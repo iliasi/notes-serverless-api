@@ -11,7 +11,7 @@ export const main = handler(async(event, context) => {
     const params = {
         TableName: process.env.tableName,
         Item: {
-            userId: "123", //userid of note creator
+            userId: event.requestContext.identity.cognitoIdentityId, //userid of note creator
             noteId: uuid.v1(), //unique id for the note
             content: data.content, //note's content as stated in request body
             attachment: data.attachment, //note attachement as stated in request body
